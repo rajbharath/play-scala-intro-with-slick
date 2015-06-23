@@ -1,10 +1,23 @@
-@(message: String)
+@(persons: Seq[Person])
 
 @main("Welcome to Play") {
 
-<form action="@routes.Application.addPerson()" method="post">
-    <input name="name" type="text"/>
-    <button>Add Person</button>
+<h2>Insert a person cat here:</h2>
+<form action="/person" method="POST">
+    <input name="name" type="text" placeholder="name your feline friend"/>
+    <input type="submit" value="Add Person"/>
 </form>
+
+<h2>Previously inserted persons:</h2>
+<table>
+    <tr>
+        <th>Name</th>
+    </tr>
+    @for(p <- persons){
+    <tr>
+        <td>@p.name</td>
+    </tr>
+    }
+</table>
 
 }
